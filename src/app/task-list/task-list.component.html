@@ -17,7 +17,7 @@
 
       <mat-form-field appearance="outline">
         <mat-label>Status</mat-label>
-        <mat-select [(ngModel)]="filters.status" (selectionChange)="fetchTasks()" appearance="outline">
+        <mat-select [(ngModel)]="filters.status" (selectionChange)="fetchTasks()">
           <mat-option value="">All</mat-option>
           <mat-option value="TO_DO">To do</mat-option>
           <mat-option value="IN_PROCESS">In process</mat-option>
