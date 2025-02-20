@@ -2,7 +2,6 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Task } from '../task.model';
 import { TaskService } from '../task.service';
 import {filter} from 'rxjs';
-import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-task-list',
@@ -20,7 +19,7 @@ export class TaskListComponent implements OnInit {
   @Output() taskEdited = new EventEmitter<Task>();
   @Output() taskDeleted = new EventEmitter<number>();
 
-  constructor(private taskService: TaskService, private authService: AuthService) {}
+  constructor(private taskService: TaskService) {}
 
   ngOnInit() {
     this.fetchTasks();
@@ -112,9 +111,6 @@ export class TaskListComponent implements OnInit {
     this.fetchTasks();
   }
 
-  logout() {
-    this.authService.logout();
-  }
 
   protected readonly filter = filter;
 }

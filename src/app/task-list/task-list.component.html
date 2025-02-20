@@ -1,9 +1,4 @@
 <div class="container">
-  <div class="header">
-    <h1>To Do List</h1>
-    <button mat-raised-button class="logout" color="primary" (click)="logout()">Logout</button>
-  </div>
-
   <app-task-form (taskSaved)="onTaskSaved($event)" [task]="selectedTask"></app-task-form>
 
   <mat-card>
@@ -22,7 +17,7 @@
 
       <mat-form-field appearance="outline">
         <mat-label>Status</mat-label>
-        <mat-select [(ngModel)]="filters.status" (selectionChange)="fetchTasks()">
+        <mat-select [(ngModel)]="filters.status" (selectionChange)="fetchTasks()" appearance="outline">
           <mat-option value="">All</mat-option>
           <mat-option value="TO_DO">To do</mat-option>
           <mat-option value="IN_PROCESS">In process</mat-option>
