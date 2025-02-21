@@ -7,9 +7,9 @@ import { Router} from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:8080/api/users';
+  private readonly apiUrl = 'http://localhost:8080/api/users';
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private readonly http: HttpClient, private readonly router: Router) { }
 
   register(username: string, password: string, confirmPassword: string): Observable<any> {
     const user = { username, password, confirmPassword};

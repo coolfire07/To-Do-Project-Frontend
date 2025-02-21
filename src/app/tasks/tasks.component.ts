@@ -12,7 +12,7 @@ export class TasksComponent implements OnInit {
   tasks: Task[] = [];
   selectedTask: Task | null = null;
 
-  constructor(private taskService: TaskService) {}
+  constructor(private readonly taskService: TaskService) {}
 
   ngOnInit() {
     this.loadTasks();

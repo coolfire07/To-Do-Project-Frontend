@@ -1,9 +1,6 @@
 import {Component, EventEmitter, Output, Input, SimpleChanges} from '@angular/core';
 import {Task} from '../task.model';
-import { FormBuilder } from '@angular/forms';
-import { FormGroup } from '@angular/forms';
-import { Validators } from '@angular/forms';
-import { TaskService} from '../task.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-task-form',
@@ -17,7 +14,7 @@ export class TaskFormComponent {
   taskForm: FormGroup;
   dueDate: Date | null=null;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private readonly fb: FormBuilder) {
     this.taskForm = this.fb.group({
       taskName: ['', Validators.required],
       description: ['', Validators.required],

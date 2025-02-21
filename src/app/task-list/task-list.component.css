@@ -20,7 +20,6 @@ mat-card {
 mat-card-header {
   margin-top: 10px;
   margin-right: 0;
-  /*margin-right: 33px;*/
   width: 121px;
 }
 
@@ -69,5 +68,3 @@ mat-form-field {
   justify-content: center;
   text-align: center;
 }
-
-

@@ -17,7 +17,7 @@ export class SignInComponent {
 
   @Output() loginSuccess: EventEmitter<void> = new EventEmitter();
 
-  constructor(private authService: AuthService, private fb: FormBuilder, private router: Router) {
+  constructor(private readonly authService: AuthService, private readonly fb: FormBuilder, private readonly router: Router) {
     this.loginForm = this.fb.group({
       username: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]]

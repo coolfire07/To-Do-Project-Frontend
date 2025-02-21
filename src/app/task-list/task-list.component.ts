@@ -19,7 +19,7 @@ export class TaskListComponent implements OnInit {
   @Output() taskEdited = new EventEmitter<Task>();
   @Output() taskDeleted = new EventEmitter<number>();
 
-  constructor(private taskService: TaskService) {}
+  constructor(private readonly taskService: TaskService) {}
 
   ngOnInit() {
     this.fetchTasks();
