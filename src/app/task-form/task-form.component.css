@@ -2,7 +2,6 @@
   display: flex;
   justify-content: start;
   align-items: start;
-  /*width: 100%;*/
   width: 1536px;
 }
 
@@ -16,7 +15,6 @@ mat-card {
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   flex-direction: row;
-  /*gap: 10px;*/
   width: 100%;
   margin: 0 auto;
   background-color: white;
@@ -24,7 +22,6 @@ mat-card {
 
 mat-card-header {
   margin-top: 10px;
-  /*margin-right: 15px;*/
   width: 121px;
 }
 

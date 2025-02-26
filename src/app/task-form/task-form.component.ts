@@ -63,10 +63,10 @@ export class TaskFormComponent {
 
   resetForm() {
     this.taskForm.reset({
-      taskName: this.task?.taskName || '',
-      description: this.task?.description || '',
-      completionDate: this.task?.completionDate || null,
-      status: this.task?.status || 'TO_DO',
+      taskName: this.task?.taskName ?? '',
+      description: this.task?.description ?? '',
+      completionDate: this.task?.completionDate ?? null,
+      status: this.task?.status ?? 'TO_DO',
     });
 
     Object.keys(this.taskForm.controls).forEach(control => {
