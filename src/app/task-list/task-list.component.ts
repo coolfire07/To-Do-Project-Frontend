@@ -26,7 +26,6 @@ export class TaskListComponent implements OnInit {
   }
 
   fetchTasks() {
-    console.log('Current filters before request:', this.filters);
     if (this.filters.date) {
       const dateObj = new Date(this.filters.date);
       if (!isNaN(dateObj.getTime())) {
@@ -35,7 +34,6 @@ export class TaskListComponent implements OnInit {
       }
     }
 
-    console.log('filters после обработки:', this.filters)
     this.taskService.getTasks(this.filters).subscribe(
       (data) => {
         this.tasks = data;
@@ -45,7 +43,6 @@ export class TaskListComponent implements OnInit {
         alert('error fetching tasks');
       }
     );
-    console.log(this.filters);
   }
 
   editTask(id: number) {

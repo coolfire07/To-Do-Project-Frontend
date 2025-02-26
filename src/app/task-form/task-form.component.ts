@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Output, Input, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, OnChanges, Output, Input, SimpleChanges} from '@angular/core';
 import {Task} from '../task.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -8,7 +8,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   templateUrl: './task-form.component.html',
   styleUrl: './task-form.component.css'
 })
-export class TaskFormComponent {
+export class TaskFormComponent implements OnChanges {
   @Input() task: Task | null = null;
   @Output() taskSaved = new EventEmitter<Task>();
   taskForm: FormGroup;
