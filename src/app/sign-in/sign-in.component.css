@@ -1,4 +1,4 @@
-.sign-in {
+.sign-in, .registration {
   display: flex;
   justify-content: center;
   align-items: center;

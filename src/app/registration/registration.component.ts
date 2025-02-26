@@ -7,7 +7,7 @@ import {Router} from '@angular/router';
   selector: 'app-registration',
   standalone: false,
   templateUrl: './registration.component.html',
-  styleUrl: './registration.component.css'
+  styleUrl: '../sign-in/sign-in.component.css'
 })
 export class RegistrationComponent {
   @ViewChild('usernameInput', { static: false }) usernameInput!: ElementRef;
