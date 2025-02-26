@@ -36,17 +36,4 @@ export class TasksComponent implements OnInit {
       this.loadTasks();
     });
   }
-
-  onTaskSaved(task: Task) {
-    if (task.id) {
-      this.taskService.updateTask(task.id, task).subscribe(() => {
-        this.loadTasks();
-      });
-    } else {
-      this.taskService.addTask(task).subscribe(() => {
-        this.loadTasks();
-      });
-    }
-    this.selectedTask = null;
-  }
 }

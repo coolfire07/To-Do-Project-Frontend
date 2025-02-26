@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { Task } from './task.model';  // Импорт модели задачи
+import { Task } from './task.model';
 
 interface Filters {
   status?: string;
@@ -21,7 +21,6 @@ export class TaskService {
 
   private getHeaders(): HttpHeaders {
     const token = localStorage.getItem('token');
-    console.log("Отправляемый токен:", token);
 
     return new HttpHeaders({
       'Content-Type': 'application/json',
@@ -49,7 +48,6 @@ export class TaskService {
     );
   }
 
-
   getTask(id: number): Observable<Task> {
     return this.http.get<Task>(`${this.apiUrl}/${id}`, { headers: this.getHeaders() }).pipe(
       catchError(this.handleError)
@@ -57,7 +55,6 @@ export class TaskService {
   }
 
   addTask(task: Task): Observable<Task> {
-    console.log("Отправляемый токен в addTask:", this.getHeaders().get('Authorization'));
     return this.http.post<Task>(this.apiUrl, task, { headers: this.getHeaders() }).pipe(
       catchError(this.handleError)
     );
@@ -76,7 +73,6 @@ export class TaskService {
   }
 
   private handleError(error: any): Observable<never> {
-    console.error('Error occurred:', error);
     return throwError(() => new Error('Something went wrong; please try again later.'));
   }
 }

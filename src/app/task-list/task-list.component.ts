@@ -1,13 +1,13 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Task } from '../task.model';
 import { TaskService } from '../task.service';
-import {filter} from 'rxjs';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-task-list',
   standalone: false,
   templateUrl: './task-list.component.html',
-  styleUrls: ['./task-list.component.css'] // Исправлено на styleUrls
+  styleUrls: ['./task-list.component.css']
 })
 export class TaskListComponent implements OnInit {
   @Input() tasks: Task[] = [];
@@ -19,7 +19,7 @@ export class TaskListComponent implements OnInit {
   @Output() taskEdited = new EventEmitter<Task>();
   @Output() taskDeleted = new EventEmitter<number>();
 
-  constructor(private readonly taskService: TaskService) {}
+  constructor(private taskService: TaskService, private authService: AuthService) {}
 
   ngOnInit() {
     this.fetchTasks();
@@ -34,7 +34,6 @@ export class TaskListComponent implements OnInit {
         this.filters.date = dateObj.toISOString().split('T')[0];
       }
     }
-
 
     console.log('filters после обработки:', this.filters)
     this.taskService.getTasks(this.filters).subscribe(
@@ -111,6 +110,7 @@ export class TaskListComponent implements OnInit {
     this.fetchTasks();
   }
 
-
-  protected readonly filter = filter;
+  logout() {
+    this.authService.logout();
+  }
 }

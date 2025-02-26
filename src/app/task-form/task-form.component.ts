@@ -12,7 +12,6 @@ export class TaskFormComponent {
   @Input() task: Task | null = null;
   @Output() taskSaved = new EventEmitter<Task>();
   taskForm: FormGroup;
-  dueDate: Date | null=null;
 
   constructor(private readonly fb: FormBuilder) {
     this.taskForm = this.fb.group({
@@ -45,8 +44,6 @@ export class TaskFormComponent {
     }
   }
 
-
-
   onSubmit() {
     if (this.taskForm.valid) {
       const taskData: Task = {
@@ -56,8 +53,6 @@ export class TaskFormComponent {
 
       this.taskSaved.emit(taskData);
       this.resetForm();
-    } else {
-      console.log("Форма невалидна");
     }
   }
 

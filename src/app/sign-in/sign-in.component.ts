@@ -23,41 +23,19 @@ export class SignInComponent {
     });
   }
 
-  ngAfterViewInit(): void {
-    console.log('Элементы инициализированы');
-    if (this.usernameInput) {
-      console.log('Username Input доступен');
-    }
-    if (this.passwordInput) {
-      console.log('Password Input доступен');
-    }
-  }
-
-
-
   login() {
-    console.log("login")
     const username = this.usernameInput.nativeElement.value;
     const password = this.passwordInput.nativeElement.value;
-    console.log("Отправка запроса на авторизацию");
 
-    console.log(username);
-    console.log(password);
     this.authService.login(username, password).subscribe(
       response => {
-        console.log('Вход выполнен успешно:', response);
         const token = response.token;
         localStorage.setItem('jwt-token', token);
-        console.log('Token saved:', token);
         this.router.navigate(['/tasks']).then(success => {
           if (success) {
             this.loginSuccess.emit();
-            console.log('Navigation to /tasks successful');
-          } else {
-            console.log('Navigation to /tasks failed');
           }
         });
-
       }
     );
   }
@@ -65,13 +43,9 @@ export class SignInComponent {
   @Output() toggle: EventEmitter<void> = new EventEmitter();
 
   toggleForm() {
-    console.log('Переключение на регистрацию');
     this.router.navigate(['/register']).then(success => {
       if (success) {
         this.toggle.emit();
-        console.log('Navigation to /register successful');
-      } else {
-        console.log('Navigation to /register failed');
       }
     });
   }

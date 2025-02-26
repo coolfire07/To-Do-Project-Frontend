@@ -27,51 +27,24 @@ export class RegistrationComponent {
     });
   }
 
-  ngAfterViewInit(): void {
-    console.log('Элементы инициализированы');
-    if (this.usernameInput) {
-      console.log('Username Input доступен');
-    }
-    if (this.passwordInput) {
-      console.log('Password Input доступен');
-    }
-    if (this.confirmPasswordInput) {
-      console.log('Confirm Password Input доступен');
-    }
-  }
-
   toggleForm() {
-    console.log('Переключение на регистрацию');
     this.router.navigate(['/login']).then(success => {
       if (success) {
         this.toggle.emit();
-        console.log('Navigation to /login successful');
-      } else {
-        console.log('Navigation to /login failed');
       }
     });
   }
 
   register(){
-    console.log("registration")
     const username = this.usernameInput.nativeElement.value;
     const password = this.passwordInput.nativeElement.value;
     const confirmPassword = this.confirmPasswordInput.nativeElement.value;
-    console.log("Отправка запроса на регистрацию");
-
-    console.log(username);
-    console.log(password);
-    console.log(confirmPassword);
 
     this.authService.register(username, password, confirmPassword).subscribe(
       response => {
-        console.log('Решистрация выполнена успешно:', response);
         this.router.navigate(['/login']).then(success => {
           if (success) {
             this.registrationSuccess.emit();
-            console.log('Navigation to /login successful');
-          } else {
-            console.log('Navigation to /login failed');
           }
         });
 

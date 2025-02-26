@@ -1,4 +1,9 @@
 <div class="container">
+  <div class="header">
+    <h1>To Do List</h1>
+    <button mat-raised-button class="logout" color="primary" (click)="logout()">Logout</button>
+  </div>
+
   <app-task-form (taskSaved)="onTaskSaved($event)" [task]="selectedTask"></app-task-form>
 
   <mat-card>
