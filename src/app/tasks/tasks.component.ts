@@ -25,10 +25,7 @@ export class TasksComponent implements OnInit {
   }
 
   onEditTask(taskId: number) {
-    const taskToEdit = this.tasks.find(task => task.id === taskId);
-    if (taskToEdit) {
-      this.selectedTask = taskToEdit;
-    }
+    this.selectedTask = this.tasks.find(task => task.id === taskId) ?? null;
   }
 
   onDeleteTask(taskId: number) {
