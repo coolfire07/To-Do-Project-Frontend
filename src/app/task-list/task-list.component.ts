@@ -16,8 +16,6 @@ export class TaskListComponent implements OnInit {
 
   @Output() editTaskEvent = new EventEmitter<number>();
   @Output() deleteTaskEvent = new EventEmitter<number>();
-  @Output() taskEdited = new EventEmitter<Task>();
-  @Output() taskDeleted = new EventEmitter<number>();
 
   constructor(private readonly taskService: TaskService, private readonly authService: AuthService) {}
 
@@ -49,7 +47,6 @@ export class TaskListComponent implements OnInit {
     this.taskService.getTask(id).subscribe({
       next: (task) => {
         this.selectedTask = task;
-        this.taskEdited.emit(task);
         this.editTaskEvent.emit(id);
       },
       error: (error) => {
@@ -64,7 +61,6 @@ export class TaskListComponent implements OnInit {
       this.taskService.deleteTask(id).subscribe({
         next: () => {
           this.fetchTasks();
-          this.taskDeleted.emit(id);
         },
         error: (error) => {
         console.error(error);
