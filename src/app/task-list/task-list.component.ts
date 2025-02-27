@@ -34,69 +34,69 @@ export class TaskListComponent implements OnInit {
       }
     }
 
-    this.taskService.getTasks(this.filters).subscribe(
-      (data) => {
+    this.taskService.getTasks(this.filters).subscribe({
+      next: (data) => {
         this.tasks = data;
       },
-      (error) => {
+      error: (error) => {
         console.error(error);
         alert('error fetching tasks');
       }
-    );
+    });
   }
 
   editTask(id: number) {
-    this.taskService.getTask(id).subscribe(
-      (task) => {
+    this.taskService.getTask(id).subscribe({
+      next: (task) => {
         this.selectedTask = task;
         this.taskEdited.emit(task);
         this.editTaskEvent.emit(id);
       },
-      (error) => {
+      error: (error) => {
         console.error(error);
         alert('error fetching task');
       }
-    );
+    });
   }
 
   deleteTask(id: number) {
     if (confirm('Are you sure you want to delete this task?')) {
-      this.taskService.deleteTask(id).subscribe(
-        () => {
+      this.taskService.deleteTask(id).subscribe({
+        next: () => {
           this.fetchTasks();
           this.taskDeleted.emit(id);
         },
-        (error) => {
-          console.error(error);
-          alert('error deleting task');
+        error: (error) => {
+        console.error(error);
+        alert('error deleting task');
         }
-      );
+      });
     }
   }
 
   onTaskSaved(task: Task) {
     if (task.id) {
-      this.taskService.updateTask(task.id, task).subscribe(
-        () => {
+      this.taskService.updateTask(task.id, task).subscribe({
+        next: () => {
           this.fetchTasks();
           this.selectedTask = null;
         },
-        (error) => {
+        error: (error) => {
           console.error(error);
           alert('error updating task');
         }
-      );
+      });
     } else {
-      this.taskService.addTask(task).subscribe(
-        () => {
+      this.taskService.addTask(task).subscribe({
+        next: () => {
           this.fetchTasks();
           this.selectedTask = null;
         },
-        (error) => {
+        error: (error) => {
           console.error(error);
           alert('error adding task');
         }
-      );
+      });
     }
 
     this.selectedTask = null;
