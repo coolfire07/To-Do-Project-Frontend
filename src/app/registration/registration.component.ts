@@ -1,4 +1,4 @@
-import {Component, ElementRef, EventEmitter, Output, ViewChild} from '@angular/core';
+import {Component, ElementRef, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../auth.service';
 import {Router} from '@angular/router';
@@ -15,10 +15,6 @@ export class RegistrationComponent {
   @ViewChild('confirmPasswordInput', { static: false }) confirmPasswordInput!: ElementRef;
   registrationForm!: FormGroup;
 
-  @Output() registrationSuccess: EventEmitter<void> = new EventEmitter();
-
-  @Output() toggle: EventEmitter<void> = new EventEmitter();
-
   constructor(private readonly authService:AuthService, private readonly fb:FormBuilder, private readonly router: Router) {
     this.registrationForm = this.fb.group({
       username: ['', [Validators.required, Validators.email]],
@@ -28,11 +24,7 @@ export class RegistrationComponent {
   }
 
   toggleForm() {
-    this.router.navigate(['/login']).then(success => {
-      if (success) {
-        this.toggle.emit();
-      }
-    });
+    this.router.navigate(['/login']);
   }
 
   register(){
@@ -42,12 +34,7 @@ export class RegistrationComponent {
 
     this.authService.register(username, password, confirmPassword).subscribe(
       response => {
-        this.router.navigate(['/login']).then(success => {
-          if (success) {
-            this.registrationSuccess.emit();
-          }
-        });
-
+        this.router.navigate(['/login']);
       }
     );
   }
