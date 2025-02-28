@@ -60,7 +60,7 @@ export class TaskListComponent implements OnInit {
     if (confirm('Are you sure you want to delete this task?')) {
       this.taskService.deleteTask(id).subscribe({
         next: () => {
-          this.fetchTasks();
+          this.tasks = this.tasks.filter(task => task.id !== id);
         },
         error: (error) => {
         console.error(error);
@@ -73,30 +73,32 @@ export class TaskListComponent implements OnInit {
   onTaskSaved(task: Task) {
     if (task.id) {
       this.taskService.updateTask(task.id, task).subscribe({
-        next: () => {
-          this.fetchTasks();
+        next: (returnedTask) => {
+          const index = this.tasks.findIndex(t => t.id === returnedTask.id);
+          if (index !== -1) {
+            this.tasks[index] = returnedTask;
+          }
           this.selectedTask = null;
         },
         error: (error) => {
           console.error(error);
-          alert('error updating task');
+          alert('Error updating task');
         }
       });
     } else {
       this.taskService.addTask(task).subscribe({
-        next: () => {
-          this.fetchTasks();
+        next: (returnedTask) => {
+          this.tasks.push(returnedTask);
           this.selectedTask = null;
         },
         error: (error) => {
           console.error(error);
-          alert('error adding task');
+          alert('Error adding task');
         }
       });
     }
-
-    this.selectedTask = null;
   }
+
 
   resetFilters() {
     this.filters = { status: '', date: '', keyword: '', sort: '' };
